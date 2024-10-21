@@ -2,11 +2,14 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "../../Firebase";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/slices/Login";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,6 +26,7 @@ function Login() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      dispatch(login())
       toast.success("User logged in successfully", {
         position: "top-center",
       });
