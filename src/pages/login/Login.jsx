@@ -4,17 +4,19 @@ import { auth } from "../../Firebase";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/slices/Login";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic form validation
+
     if (!email || !password) {
       toast.error("Please fill in all fields", {
         position: "top-center",
@@ -30,8 +32,8 @@ function Login() {
       toast.success("User logged in successfully", {
         position: "top-center",
       });
-      // Redirect to profile page
-      window.location.href = "/Home";
+
+      navigate("/home"); // Use navigate to redirect
     } catch (error) {
       toast.error(error.message, {
         position: "bottom-center",
