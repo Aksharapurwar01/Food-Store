@@ -13,6 +13,11 @@ const FoodCard = ({ id, name, price, desc, img, rating, handleToast }) => {
     navigate(`/food/${id}`);
   };
 
+  const handleAddToCart = (event) => {
+    dispatch(addToCart({ id, name, price, rating, img, qty: 1 }));
+    handleToast(name);
+  };
+
   return (
     <div onClick={handleClick} className="font-bold w-[250px] bg-white p-5 flex flex-col rounded-lg gap-2">
       <img
@@ -30,12 +35,7 @@ const FoodCard = ({ id, name, price, desc, img, rating, handleToast }) => {
           <AiFillStar className="mr-1 text-yellow-400" /> {rating}
         </span>
         <button
-        onClick={() => {
-            dispatch(
-              addToCart({ id, name, price, rating, price, img, qty: 1 })
-            );
- 
-          }}
+         onClick={handleAddToCart}
           className="p-1 text-white bg-green-500 hover:bg-green-600 rounded-lg text-sm"
         >
           Add to cart
