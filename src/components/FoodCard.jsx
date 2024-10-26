@@ -3,12 +3,18 @@ import { AiFillStar } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../store/slices/CartSlice";
 import { removeFromCart } from "../store/slices/CartSlice";
+import { useNavigate } from "react-router-dom";
 
 const FoodCard = ({ id, name, price, desc, img, rating, handleToast }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/food/${id}`);
+  };
 
   return (
-    <div className="font-bold w-[250px] bg-white p-5 flex flex-col rounded-lg gap-2">
+    <div onClick={handleClick} className="font-bold w-[250px] bg-white p-5 flex flex-col rounded-lg gap-2">
       <img
         src={img}
         alt=""

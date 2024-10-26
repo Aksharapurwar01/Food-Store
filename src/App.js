@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
 import Success from "./pages/Success";
 import Error from "./pages/Error";
 import ProtectedRoute from "./components/ProtectedRoute";
+import FoodDetails from "./components/FoodDetails";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
           element={<ProtectedRoute element={<Success />} />}
         />
         <Route path="/*" element={<Error />} />
+        <Route path="/food/:id" element={<FoodDetails />} />
 
       </Routes>
     </BrowserRouter>

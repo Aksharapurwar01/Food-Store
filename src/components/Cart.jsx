@@ -4,6 +4,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import ItemCard from "./ItemCard";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import emptyCartImage from '../assets/empty-cart.png'
 
 const Cart = () => {
   const [activeCart, setActiveCart] = useState(false);
@@ -46,11 +47,17 @@ const Cart = () => {
             );
           })
         ) : (
-          <h2 className="text-center text-xl font-bold text-gray-800">
+          <div className="flex flex-col items-center">
+          <img
+            src={emptyCartImage}
+            alt="Empty Cart"
+            className="w-40 h-40"
+          />
+          <h2 className="text-center text-xl font-bold text-gray-800 mt-4">
             Your cart is empty
           </h2>
-        )}
-
+        </div>
+        )} 
         <div className="absolute bottom-0 ">
           <h3 className="font-semibold text-gray-800">Items : {totalQty}</h3>
           <h3 className="font-semibold text-gray-800">
@@ -59,7 +66,12 @@ const Cart = () => {
           <hr className="w-[90vw] lg:w-[18vw] my-2" />
           <button
             onClick={() => navigate("/success")}
-            className="bg-green-500 font-bold px-3 text-white py-2 rounded-lg w-[90vw] lg:w-[18vw] mb-5"
+            className={`font-bold px-3 text-white py-2 rounded-lg w-[90vw] lg:w-[18vw] mb-5 ${
+              cartItems.length <= 0
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-green-500"
+            }`}
+            disabled={cartItems.length <=0}
           >
             Checkout
           </button>

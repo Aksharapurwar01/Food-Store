@@ -180,4 +180,20 @@ const FoodData = [
       rating: 4.8,
     },
   ];
+
+
+
+  
+  for (let i = 21; i <= 70; i++) {
+    FoodData.push({
+      id: i,
+      img: "https://dummyimage.com/200x200/000/fff&text=Food+Item+" + i,
+      name: "Sample Food Item " + i,
+      price: Math.floor(Math.random() * 100) + 50,
+      desc: "Description for food item " + i,
+      category: ["Breakfast", "Lunch", "Dinner", "Snacks"][Math.floor(Math.random() * 4)],
+      rating: (Math.random() * (5 - 3.5) + 3.5).toFixed(1),
+    });
+  }
+  
   export default FoodData;
